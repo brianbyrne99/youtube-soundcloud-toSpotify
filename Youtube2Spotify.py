@@ -30,25 +30,29 @@ def downloadFromYoutube(song):
     return filename
 
 # Funtion to relocate songs to spotify on your computer
+
+
 def relocater(filenames, local_folder):
     for file in filenames:
-        # absolute path       
+        # absolute path
         src_path = os.path.abspath(file)
         dst_path = '{0}/{1}'.format(os.path.abspath(local_folder_path), file)
         shutil.move(src_path, dst_path)
 
 
 if __name__ == '__main__':
-    local_folder_path = input('Enter the activated local spotify folder path \nIf unsure, watch https://www.youtube.com/watch?v=vxGMl0Zkeu0 : ')
+    local_folder_path = input(
+        'Enter the activated local spotify folder path \nIf unsure, watch https://www.youtube.com/watch?v=vxGMl0Zkeu0 : ')
 
     add_song = False
     downloaded_files = []
     while(not add_song):
-        song_url = input('Enter the youtube/soundcloud URL of the song\n Enter (n) to kill program : ')
+        downloaded_files = []
+        song_url = input(
+            'Enter the youtube/soundcloud URL of the song\n Enter (n) to kill program : ')
         if song_url == 'n':
             print('Terminating Progam')
             add_song = True
         else:
             downloaded_files.append(downloadFromYoutube(song_url))
             relocater(downloaded_files, local_folder_path)
-
